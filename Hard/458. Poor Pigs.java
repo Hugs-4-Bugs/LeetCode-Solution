@@ -1,5 +1,9 @@
 class Solution {
-  public int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
-    return (int) Math.ceil(Math.log(buckets) / Math.log(minutesToTest / minutesToDie + 1));
+ public int poorPigs(int buckets, int tdie, int ttest) {
+     int test = ttest/tdie;
+        int i=0;
+        while(Math.pow(test+1,i)< buckets){
+            i++;
+        }return i;
   }
 }
