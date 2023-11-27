@@ -27,6 +27,7 @@ class GfG
                    //add code here.
                   for(int i = 0; i < n; i++){
                       
+                    //   Logic of palindrome number in java
                       int arrNum = 0;
                       int count = a[i];
                       int original = count;
