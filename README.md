@@ -3,19 +3,11 @@
 
 The "LeetCode-Solution" GitHub repository is a daily challenge hub where I solve a variety of problems using Java. It's a compilation of solutions tackling different LeetCode challenges, showcasing Java implementations to help fellow developers learn and practice problem-solving skills. 
 
-### • [Practice Link]: 
-https://leetcode.com/problemset/
 
-
-### Profile: 
+## Profile: 
 https://leetcode.com/u/Hugs-2-Bugs/
 
 
-
-To make your list more organized and readable in a GitHub `README.md`, you can structure it using Markdown, add headers, use bullet points, and hyperlink the lists for easy access. Here's a polished version:
-
-```markdown
-# LeetCode Problem Lists and Study Resources
 
 ## Problem Lists
 
@@ -169,7 +161,7 @@ To make your list more organized and readable in a GitHub `README.md`, you can s
 
 /study-guide/1149636/Amazon-LPs-Compiled)
 
----
+
 
 *Some of the lists will be updated soon. Any suggestions for adding new lists or questions will be noted and appreciated.*
-```
+
