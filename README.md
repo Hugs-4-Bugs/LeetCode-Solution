@@ -3,7 +3,8 @@
 
 The "LeetCode-Solution" GitHub repository is a daily challenge hub where I solve a variety of problems using Java. It's a compilation of solutions tackling different LeetCode challenges, showcasing Java implementations to help fellow developers learn and practice problem-solving skills. 
 
-### • [Practice Link](https://leetcode.com/problemset/)
+### • [Practice Link]: 
+(https://leetcode.com/problemset/)
 
 ## • Arrays & Strings
 
@@ -114,21 +115,32 @@ The "LeetCode-Solution" GitHub repository is a daily challenge hub where I solve
 
 #### Algo's Objective: **Maximum Sum of Contiguous Subarray**
 
-```python
+```Java
 
-def kadanealgo(arr):
-    maximum = min(arr)
-    cur = 0
-    for i in range(len(arr)):
-        cur = cur + arr[i]
-        if cur > maximum:
-            maximum = cur
-        if cur < 0:
-            cur = 0
-    return
+public class KadaneAlgorithm {
+    public static int kadaneAlgo(int[] arr) {
+        int maximum = Integer.MIN_VALUE;
+        int cur = 0;
+        
+        for (int i = 0; i < arr.length; i++) {
+            cur += arr[i];
+            if (cur > maximum) {
+                maximum = cur;
+            }
+            if (cur < 0) {
+                cur = 0;
+            }
+        }
+        
+        return maximum;
+    }
 
-arr = [-2, -3, 4, -1, -2, 1, 5, -3]
-print(kadanealgo(arr))
+    public static void main(String[] args) {
+        int[] arr = {-2, -3, 4, -1, -2, 1, 5, -3};
+        System.out.println(kadaneAlgo(arr));
+    }
+}
+
 
 ```
 
@@ -138,28 +150,40 @@ print(kadanealgo(arr))
 
 #### Algo's Objective: **Sort an array of 0s, 1s and 2s**
 
-```python
+```Java
 
-def dutchflagalgo(arr):
-    low = 0
-    mid = 0
-    high = len(arr) - 1
-    while mid<=high:
-        if arr[mid] == 0:   #Swap low with mid
-            arr[low], arr[mid] = arr[mid], arr[low]
-            low = low + 1
-            mid = mid + 1
-        elif arr[mid] == 1: #Increment the mid counter i.e. 1's
-            mid = mid + 1
-        else:   #Swap mid with high
-            arr[mid], arr[high] = arr[high], arr[mid]
-            high = high - 1
-    return arr
+import java.util.Arrays;
 
-     #low
-arr = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1]
-     #mid                              #high
-print(dutchflagalgo(arr))
+public class DutchFlagAlgorithm {
+    public static int[] dutchFlagAlgo(int[] arr) {
+        int low = 0, mid = 0, high = arr.length - 1;
+        
+        while (mid <= high) {
+            if (arr[mid] == 0) {  // Swap low with mid
+                int temp = arr[low];
+                arr[low] = arr[mid];
+                arr[mid] = temp;
+                low++;
+                mid++;
+            } else if (arr[mid] == 1) {  // Increment the mid counter i.e. 1's
+                mid++;
+            } else {  // Swap mid with high
+                int temp = arr[mid];
+                arr[mid] = arr[high];
+                arr[high] = temp;
+                high--;
+            }
+        }
+        
+        return arr;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1};
+        System.out.println(Arrays.toString(dutchFlagAlgo(arr)));
+    }
+}
+
 
 ```
 
@@ -169,7 +193,7 @@ print(dutchflagalgo(arr))
 
 #### Algo's Objective: **Maximum/Minimum Sum of K size subarray**
 
-```python
+```Java
 
 """
 1. windowsum: Store the sum of elements of current window
@@ -178,19 +202,43 @@ print(dutchflagalgo(arr))
 
 """
 
-def slidingwindow(arr, k):
-    windowsum = sum(arr[:k])
-    maximum = windowsum
-    n = len(arr)
+import java.util.Arrays;
 
-    for i in range(n-k):
-        windowsum = windowsum - arr[i] + arr[i+k]
-        maximum = max(windowsum, maximum)
-    return maximum
+public class SlidingWindow {
+    public static int slidingWindow(int[] arr, int k) {
+        int windowSum = 0;
+        int maxSum;
+        int n = arr.length;
+        
+        if (n < k) {
+            System.out.println("Invalid operation: Array size is smaller than the window size.");
+            return -1;
+        }
+        
+        // Calculate the sum of the first window
+        for (int i = 0; i < k; i++) {
+            windowSum += arr[i];
+        }
+        
+        maxSum = windowSum;
+        
+        // Slide the window from start to end in the array
+        for (int i = 0; i < n - k; i++) {
+            windowSum = windowSum - arr[i] + arr[i + k];
+            maxSum = Math.max(maxSum, windowSum);
+        }
+        
+        return maxSum;
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {1, 4, 2, 10, 2, 3, 1, 0, 20};
+        int k = 3;
+        int result = slidingWindow(arr, k);
+        System.out.println("Maximum sum of subarrays of size " + k + " is: " + result);
+    }
+}
 
-arr = [1, 4, 2, 10, 2, 3, 1, 0, 20]
-k = 3
-print(slidingwindow(arr, k))
 
 ```
 
@@ -198,7 +246,7 @@ print(slidingwindow(arr, k))
 
 #### Algo's Objective: **Smallest subarray with given Sum**
 
-```python
+```Java
 
 def slidingwindow(arr, target):
     windowsum = 0              #Current window sum
@@ -227,24 +275,38 @@ print(slidingwindow(arr, target))
 
 #### Algo's Objective: **Find pairs in an array with a sum equal to k**
 
-```python
+```Java
 
-def twopointeralgo(arr, k):
-    i = 0              #represents first pointer
-    j = len(arr) - 1   #represents second pointer
- 
-    while i<j:
-        if (arr[i] + arr[j] == k):   #If we find a pair
-            return 1
-        elif(arr[i] + arr[j] < k):
-            i = i + 1
-        else:
-            j -= 1
-    return 0
- 
-arr = [3, 5, 9, 2, 8, 10, 11]
-k = 17
-print(twopointeralgo(arr, k))
+public class TwoPointerAlgorithm {
+    public static int twoPointerAlgo(int[] arr, int k) {
+        int i = 0;              // First pointer
+        int j = arr.length - 1; // Second pointer
+
+        // Sort the array first to apply the two-pointer technique
+        java.util.Arrays.sort(arr);
+
+        while (i < j) {
+            int sum = arr[i] + arr[j];
+
+            if (sum == k) {    // If we find a pair
+                return 1;
+            } else if (sum < k) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {3, 5, 9, 2, 8, 10, 11};
+        int k = 17;
+        System.out.println(twoPointerAlgo(arr, k));
+    }
+}
+
 
 ```
 
@@ -254,7 +316,7 @@ print(twopointeralgo(arr, k))
 
 #### Algo's Objective: **Find triplets in an array with a sum equal to k**
 
-```python
+```Java
 
 
 
@@ -266,7 +328,7 @@ print(twopointeralgo(arr, k))
 
 #### Algo's Objective: ****
 
-```python
+```Java
 
 
 
