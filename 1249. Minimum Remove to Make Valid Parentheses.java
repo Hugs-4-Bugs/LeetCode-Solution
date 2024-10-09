@@ -12,6 +12,7 @@ class Solution {
         else
           stack.pop(); // Find a pair!
       }
+    
 
     // Mark the unpaired '(' as '#'.
     while (!stack.isEmpty())
