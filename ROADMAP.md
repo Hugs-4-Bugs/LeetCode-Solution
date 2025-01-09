@@ -1,4 +1,12 @@
- <img  src="https://static-fastly.hackerearth.com/static/hackerearth/images/marketing/algorithm_blog/algo-og.jpg" width="100%">
+## LeetCode Patterns
+
+![image](https://github.com/user-attachments/assets/86d32e0f-5762-4177-886c-9b339b24ccb9)
+
+---
+
+![image](https://github.com/user-attachments/assets/d8e4dc07-143d-4112-adb3-5dcea10419b1)
+
+
 
 1. [Introduction to Git](https://www.youtube.com/watch?v=apGV9Kg7ics)
 2. Introduction to Programming
