@@ -1,22 +1,20 @@
-// // classic solution, will time limit exceeded. O(n^2)
+// Using DP 
 
-// public class Solution {
-//     public int maxProfit(int[] prices) {
-//         int res = 0;
-//         if(prices == null || prices.length <= 1) return res;
-//         int[] dp = new int[prices.length];
+class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length <= 1) return 0;
 
-//         dp[0] = 0;
-//         for(int i=1; i<dp.length; i++){
-//             for(int j=0; j<i; j++){
-//                 dp[i] = Math.max(prices[i]-prices[j], dp[i]);
-//             }
-//             res = Math.max(dp[i], res);
-//         }
+        int[] dp = new int[prices.length]; // dp[i] stores the max profit up to day i
+        int minPrice = prices[0]; // Minimum price seen so far
 
-//         return res;
-//     }
-// }
+        for (int i = 1; i < prices.length; i++) {
+            dp[i] = Math.max(dp[i - 1], prices[i] - minPrice); // Max profit if sold at day i
+            minPrice = Math.min(minPrice, prices[i]); // Update minimum price
+        }
+
+        return dp[prices.length - 1]; // Maximum profit at the last day
+    }
+}
 
 
 
@@ -25,36 +23,36 @@
 
 // O(n)
 
-// public class Solution {
-//     public int maxProfit(int[] prices) {
-//         int res = 0;
-//         if(prices == null || prices.length <=1 )return res;
-//         int min = prices[0];
-//         for(int i=1; i< prices.length; i++){
-//             if(prices[i] > min){
-//                 res = Math.max(res, prices[i] - min);
-//             }else{
-//                 min = prices[i];
-//             }
-//         }
+public class Solution {
+    public int maxProfit(int[] prices) {
+        int res = 0;
+        if(prices == null || prices.length <=1 )return res;
+        int min = prices[0];
+        for(int i=1; i< prices.length; i++){
+            if(prices[i] > min){
+                res = Math.max(res, prices[i] - min);
+            }else{
+                min = prices[i];
+            }
+        }
 
-//         return res;
+        return res;
 
-//     }
-// }
+    }
+}
 
 
 
-// class Solution {
-// 	int maxProfit(int[] prices) {
-// 	    int profit = 0, minPrice = Integer.MAX_VALUE;
-// 		for(int i = 0; i < prices.length; i++) {
-// 			minPrice = Math.min(minPrice, prices[i]);
-// 			profit = Math.max(profit, prices[i] - minPrice);
-// 		}
-// 		return profit;
-// 	}
-// }
+class Solution {
+	int maxProfit(int[] prices) {
+	    int profit = 0, minPrice = Integer.MAX_VALUE;
+		for(int i = 0; i < prices.length; i++) {
+			minPrice = Math.min(minPrice, prices[i]);
+			profit = Math.max(profit, prices[i] - minPrice);
+		}
+		return profit;
+	}
+}
 
 
 
